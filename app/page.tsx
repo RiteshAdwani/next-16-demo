@@ -4,10 +4,9 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ClapButton from "@/components/ClapButton";
 import PostDate from "@/components/PostDate";
-import type { Post } from "@prisma/client";
 
 export default async function HomePage() {
-  const posts: Post[] = await getPosts();
+  const posts = await getPosts();
 
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-zinc-950">
@@ -38,7 +37,7 @@ export default async function HomePage() {
           </div>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
+            {posts.map((post: (typeof posts)[number]) => (
               <Card
                 key={post.id}
                 className="group flex flex-col justify-between h-full shadow-sm border border-slate-200 dark:border-zinc-800 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden"
