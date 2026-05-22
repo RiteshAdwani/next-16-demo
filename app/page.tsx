@@ -4,9 +4,10 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ClapButton from "@/components/ClapButton";
 import PostDate from "@/components/PostDate";
+import type { Post } from "@prisma/client";
 
 export default async function HomePage() {
-  const posts = await getPosts();
+  const posts: Post[] = await getPosts();
 
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-zinc-950">
