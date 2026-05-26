@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { prisma } from '../lib/prisma';
 import bcrypt from 'bcryptjs';
+import { MAX_CLAPS_PER_USER } from '@/constants/claps.constants';
 
 
 async function main() {
@@ -39,7 +40,7 @@ async function main() {
       title: 'Welcome to Next.js 16',
       content: `Next.js 16 introduces amazing new features like Cache Components, improved caching APIs, and more!
 
-This is a demo app showcasing all the new features in Next.js 16. Feel free to explore and test the clap feature - you can give up to 50 claps per post!
+This is a demo app showcasing all the new features in Next.js 16. Feel free to explore and test the clap feature - you can give up to ${MAX_CLAPS_PER_USER} claps per post!
 
 Key features include:
 - Cache Components with "use cache" directive

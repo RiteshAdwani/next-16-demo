@@ -1,3 +1,5 @@
+import { MAX_CLAPS_PER_USER } from "./claps.constants";
+
 export const MESSAGES = {
   REQUIRED_FIELDS: 'All fields are required.',
   EMAIL_IN_USE: 'Email already in use.',
@@ -7,6 +9,6 @@ export const MESSAGES = {
   LOGOUT_SUCCESS: 'Logged out successfully.',
   INVALID_POST_ID: 'Invalid post id.',
   POST_NOT_FOUND: 'No such post found.',
-  MAX_CLAPS_REACHED: 'Maximum claps reached (50)',
+  MAX_CLAPS_REACHED: () => `Maximum claps reached (${MAX_CLAPS_PER_USER})`,
 };
 

@@ -1,6 +1,8 @@
 "use client";
 
-export default function PostDate({ date }: { date: string }) {
+import { memo } from "react";
+
+export default memo(function PostDate({ date }: { date: string }) {
   const d = new Date(date);
   const formatted = d.toLocaleDateString("en-US", {
     year: "numeric",
@@ -11,4 +13,4 @@ export default function PostDate({ date }: { date: string }) {
 
   // Use suppressHydrationWarning in case of minor environment differences
   return <span suppressHydrationWarning>{formatted}</span>;
-}
+});

@@ -1,0 +1,1 @@
+export const MAX_CLAPS_PER_USER = 10;

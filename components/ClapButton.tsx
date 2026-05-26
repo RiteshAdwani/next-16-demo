@@ -4,6 +4,7 @@ import { useOptimistic, useTransition } from "react";
 import { clapPostAction } from "@/actions/clapPost.action";
 import { motion } from "framer-motion";
 import { callActionWithToast } from "../lib/callActionWithToast";
+import { MAX_CLAPS_PER_USER } from "@/constants/claps.constants";
 
 type ClapButtonProps = {
   postId: number;
@@ -12,7 +13,7 @@ type ClapButtonProps = {
 };
 
 export default function ClapButton(props: ClapButtonProps) {
-  const { postId, initialClaps = 0, maxClaps = 10 } = props;
+  const { postId, initialClaps = 0, maxClaps = MAX_CLAPS_PER_USER } = props;
   const [optimisticClaps, setOptimisticClaps] = useOptimistic(initialClaps);
   const [isPending, startTransition] = useTransition();
 
@@ -36,13 +37,17 @@ export default function ClapButton(props: ClapButtonProps) {
       disabled={optimisticClaps >= maxClaps || isPending}
     >
       <motion.span
-        animate={isPending ? { scale: 1.4, rotate: -10 } : { scale: 1, rotate: 0 }}
+        animate={
+          isPending ? { scale: 1.4, rotate: -10 } : { scale: 1, rotate: 0 }
+        }
         transition={{ type: "spring", stiffness: 500, damping: 12 }}
         className="text-lg leading-none"
       >
         👏
       </motion.span>
-      <span className="text-slate-700 dark:text-zinc-200 tabular-nums">{optimisticClaps}</span>
+      <span className="text-slate-700 dark:text-zinc-200 tabular-nums">
+        {optimisticClaps}
+      </span>
     </button>
   );
 }

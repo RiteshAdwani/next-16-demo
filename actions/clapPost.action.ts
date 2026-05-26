@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidateTag, updateTag } from "next/cache";
+import { updateTag } from "next/cache";
 
 import { addClap } from "@/lib/db";
 import { getCurrentUser } from "@/lib/auth";
@@ -32,8 +32,7 @@ export async function clapPostAction(postId: number, count: number = 1) {
     return { error: result.message };
   }
 
-  updateTag(CACHE_TAGS.postById(id));
-  revalidateTag(CACHE_TAGS.POSTS, "max");
+  updateTag(CACHE_TAGS.postClaps(id));
 
   return result;
 }
